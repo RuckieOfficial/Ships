@@ -8,11 +8,16 @@ namespace Ships {
     class Program {
         static void Main(string[] args) {
             Plocha plocha = new Plocha();
-            Console.WriteLine("Welcome to Ships!");
-            plocha.ShipToPolicka(3, 5, State.Placed);
-            plocha.ShipToPolicka(3, 6, State.Placed);
-            plocha.ShipToPolicka(3, 7, State.Placed);
-            Plocha.ShowPlocha();
+            Ship lode = new Ship();
+            do {
+                Console.Clear();
+                Console.WriteLine("Welcome to Ships!");
+                plocha.ShipToPolicka(lode.Xlodi, lode.Ylodi, State.Placed);
+                plocha.ShipToPolicka(lode.Xlodi, lode.Ylodi+1, State.Placed);
+                plocha.ShipToPolicka(lode.Xlodi, lode.Ylodi+2, State.Placed);
+                Plocha.ShowPlocha();
+                lode.Pohyb();
+            } while (1 > 0);
         }
     }
 }

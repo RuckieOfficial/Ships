@@ -49,6 +49,11 @@ namespace Ships {
                         if (ShipToPolicko.state == State.Missed) {
                             Console.Write(" ");
                             Console.BackgroundColor = ConsoleColor.Black;
+                            Console.Write("0");
+                        }
+                        if (ShipToPolicko.state == State.Hit) {
+                            Console.Write(" ");
+                            Console.BackgroundColor = ConsoleColor.Black;
                             Console.Write("X");
                         }
                     }
