@@ -9,7 +9,10 @@ namespace Ships {
         static void Main(string[] args) {
             Plocha plocha = new Plocha();
             Console.WriteLine("Welcome to Ships!");
-            plocha.ShowPlocha();
+            plocha.ShipToPolicka(3, 5, State.Placed);
+            plocha.ShipToPolicka(3, 6, State.Placed);
+            plocha.ShipToPolicka(3, 7, State.Placed);
+            Plocha.ShowPlocha();
         }
     }
 }
