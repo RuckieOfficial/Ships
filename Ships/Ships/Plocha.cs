@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace Ships {
     class Plocha {
         public static Plocha[,] plocha = new Plocha[10, 10];
