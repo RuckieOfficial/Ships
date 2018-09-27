@@ -18,4 +18,18 @@ namespace Ships {
         Missed,
         Hit,
     }
+
+    class EnemyPolicko {
+        public int Y { get; set; }
+        public int X { get; set; }
+        public State enemystate { get; set; }
+
+    }
+    enum enemystate {
+        Empty,
+        Placed,
+        PlacedbyShip,
+        Missed,
+        Hit,
+    }
 }
