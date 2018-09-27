@@ -43,7 +43,7 @@ namespace Ships {
                         if (ShipToPolicko.state == State.Placed) {
                             Console.Write(" ");
                             Console.BackgroundColor = ConsoleColor.Blue;
-                            Console.Write("L");
+                            Console.Write("Q");
                             dalsipole = true;
                         }
                         if (ShipToPolicko.state == State.Missed) {
@@ -71,6 +71,148 @@ namespace Ships {
                     index2 = 0;
                 }
                 index2++;
+            }
+        }
+        public int Xlodi = 3;
+        public int Ylodi = 3;
+
+        public int GetKey() {
+            var key = Console.ReadKey();
+
+            if (key.Key == ConsoleKey.LeftArrow) {
+                return 1;
+            }
+            if (key.Key == ConsoleKey.UpArrow) {
+                return 2;
+            }
+            if (key.Key == ConsoleKey.DownArrow) {
+                return 3;
+            }
+            if (key.Key == ConsoleKey.RightArrow) {
+                return 4;
+            } else {
+                return 5;
+            }
+        }
+        public void Pohyb() {
+            Plocha plocha = new Plocha();
+            int sellection = GetKey();
+
+            if (sellection == 1) {
+                if (Xlodi >= 1) {
+                    List<Policko> vytvorenepole = GeneratePlocha();
+                    foreach (Policko vytvorenepolicko in vytvorenepole) {
+                        foreach (Policko ShipToPolicko in ShipToPolicko) {
+                            if (vytvorenepolicko.X == Xlodi && vytvorenepolicko.Y == Ylodi) {
+                                if (ShipToPolicko.state == State.Placed) {
+                                    ShipToPolicko.state = State.Empty;
+                                }
+                            }
+                        }
+                    }
+                    Xlodi = Xlodi - 1;
+                } else {
+                    List<Policko> vytvorenepole = GeneratePlocha();
+                    foreach (Policko vytvorenepolicko in vytvorenepole) {
+                        foreach (Policko ShipToPolicko in ShipToPolicko) {
+                            if (vytvorenepolicko.X == Xlodi && vytvorenepolicko.Y == Ylodi) {
+                                if (ShipToPolicko.state == State.Placed) {
+                                    ShipToPolicko.state = State.Empty;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            if (sellection == 2) {
+                if (Ylodi >= 1) {
+                    List<Policko> vytvorenepole = GeneratePlocha();
+                    foreach (Policko vytvorenepolicko in vytvorenepole) {
+                        foreach (Policko ShipToPolicko in ShipToPolicko) {
+                            if (vytvorenepolicko.X == Xlodi && vytvorenepolicko.Y == Ylodi) {
+                                if (ShipToPolicko.state == State.Placed) {
+                                    ShipToPolicko.state = State.Empty;
+                                }
+                            }
+                        }
+                    }
+                    Ylodi = Ylodi - 1;
+                } else {
+                    List<Policko> vytvorenepole = GeneratePlocha();
+                    foreach (Policko vytvorenepolicko in vytvorenepole) {
+                        foreach (Policko ShipToPolicko in ShipToPolicko) {
+                            if (vytvorenepolicko.X == Xlodi && vytvorenepolicko.Y == Ylodi) {
+                                if (ShipToPolicko.state == State.Placed) {
+                                    ShipToPolicko.state = State.Empty;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            if (sellection == 3) {
+                if (Ylodi <= 8) {
+                    List<Policko> vytvorenepole = GeneratePlocha();
+                    foreach (Policko vytvorenepolicko in vytvorenepole) {
+                        foreach (Policko ShipToPolicko in ShipToPolicko) {
+                            if (vytvorenepolicko.X == Xlodi && vytvorenepolicko.Y == Ylodi) {
+                                if (ShipToPolicko.state == State.Placed) {
+                                    ShipToPolicko.state = State.Empty;
+                                }
+                            }
+                        }
+                    }
+                    Ylodi = Ylodi + 1;
+                } else {
+                    List<Policko> vytvorenepole = GeneratePlocha();
+                    foreach (Policko vytvorenepolicko in vytvorenepole) {
+                        foreach (Policko ShipToPolicko in ShipToPolicko) {
+                            if (vytvorenepolicko.X == Xlodi && vytvorenepolicko.Y == Ylodi) {
+                                if (ShipToPolicko.state == State.Placed) {
+                                    ShipToPolicko.state = State.Empty;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            if (sellection == 4) {
+                if (Xlodi <= 6) {
+                    List<Policko> vytvorenepole = GeneratePlocha();
+                    foreach (Policko vytvorenepolicko in vytvorenepole) {
+                        foreach (Policko ShipToPolicko in ShipToPolicko) {
+                            if (vytvorenepolicko.X == Xlodi && vytvorenepolicko.Y == Ylodi) {
+                                if (ShipToPolicko.state == State.Placed) {
+                                    ShipToPolicko.state = State.Empty;
+                                }
+                            }
+                        }
+                    }
+                    Xlodi = Xlodi + 1;
+                } else {
+                    List<Policko> vytvorenepole = GeneratePlocha();
+                    foreach (Policko vytvorenepolicko in vytvorenepole) {
+                        foreach (Policko ShipToPolicko in ShipToPolicko) {
+                            if (vytvorenepolicko.X == Xlodi && vytvorenepolicko.Y == Ylodi) {
+                                if (ShipToPolicko.state == State.Placed) {
+                                    ShipToPolicko.state = State.Empty;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            if (sellection == 5) {
+                List<Policko> vytvorenepole = GeneratePlocha();
+                foreach (Policko vytvorenepolicko in vytvorenepole) {
+                    foreach (Policko ShipToPolicko in ShipToPolicko) {
+                        if (vytvorenepolicko.X == Xlodi && vytvorenepolicko.Y == Ylodi) {
+                            if (ShipToPolicko.state == State.Placed) {
+                                ShipToPolicko.state = State.Empty;
+                            }
+                        }
+                    }
+                }
             }
         }
     }

@@ -12,11 +12,11 @@ namespace Ships {
             do {
                 Console.Clear();
                 Console.WriteLine("Welcome to Ships!");
-                plocha.ShipToPolicka(lode.Xlodi, lode.Ylodi, State.Placed);
-                plocha.ShipToPolicka(lode.Xlodi, lode.Ylodi+1, State.Placed);
-                plocha.ShipToPolicka(lode.Xlodi, lode.Ylodi+2, State.Placed);
+                plocha.ShipToPolicka(plocha.Ylodi, plocha.Xlodi, State.Placed);
+                plocha.ShipToPolicka(plocha.Ylodi, plocha.Xlodi+1, State.Placed);
+                plocha.ShipToPolicka(plocha.Ylodi, plocha.Xlodi+2, State.Placed);
                 Plocha.ShowPlocha();
-                lode.Pohyb();
+                plocha.Pohyb();
             } while (1 > 0);
         }
     }
