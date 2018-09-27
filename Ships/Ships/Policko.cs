@@ -14,6 +14,7 @@ namespace Ships {
     enum State {
         Empty,
         Placed,
+        PlacedbyShip,
         Missed,
         Hit,
     }

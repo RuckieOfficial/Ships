@@ -11,6 +11,8 @@ namespace Ships {
         private static List<Policko> ShipToPolicko = new List<Policko>();
         private List<Ship> ships = new List<Ship>();
         public bool exit = false;
+        public int Xlodi = 3;
+        public int Ylodi = 3;
 
         public static List<Policko> GeneratePlocha() {
             List<Policko> policka = new List<Policko>();
@@ -42,10 +44,21 @@ namespace Ships {
                 foreach (Policko ShipToPolicko in ShipToPolicko) {
                     if (vytvorenepolicko.X == ShipToPolicko.X && vytvorenepolicko.Y == ShipToPolicko.Y) {
                         if (ShipToPolicko.state == State.Placed) {
-                            Console.Write(" ");
-                            Console.BackgroundColor = ConsoleColor.Blue;
-                            Console.Write("Q");
-                            dalsipole = true;
+                            if (!dalsipole) {
+                                Console.Write(" ");
+                                Console.BackgroundColor = ConsoleColor.Blue;
+                                Console.Write("Q");
+                                dalsipole = true;
+                            }
+                        }
+                        if (ShipToPolicko.state == State.PlacedbyShip) {
+                            if (!dalsipole) {
+                                Console.Write(" ");
+                                Console.BackgroundColor = ConsoleColor.DarkGreen;
+                                Console.Write("Q");
+                                dalsipole = true;
+                            }
+
                         }
                         if (ShipToPolicko.state == State.Missed) {
                             Console.Write(" ");
@@ -74,8 +87,6 @@ namespace Ships {
                 index2++;
             }
         }
-        public int Xlodi = 3;
-        public int Ylodi = 3;
 
         public int GetKey() {
             var key = Console.ReadKey();
@@ -94,6 +105,9 @@ namespace Ships {
             }
             if (key.Key == ConsoleKey.Escape) {
                 return 6;
+            }
+            if (key.Key == ConsoleKey.Enter) {
+                return 7;
             } else {
                 return 5;
             }
@@ -228,6 +242,18 @@ namespace Ships {
                 Console.Write("██║   ██║██╔══██║██║╚██╔╝██║██╔══╝      ██║   ██║╚██╗ ██╔╝██╔══╝  ██╔══██╗ \n");
                 Console.Write("╚██████╔╝██║  ██║██║ ╚═╝ ██║███████╗    ╚██████╔╝ ╚████╔╝ ███████╗██║  ██║ \n");
                 Console.Write(" ╚═════╝ ╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝     ╚═════╝   ╚═══╝  ╚══════╝╚═╝  ╚═╝ \n");
+            }
+            if (sellection == 7) {
+                List<Policko> vytvorenepole = GeneratePlocha();
+                foreach (Policko vytvorenepolicko in vytvorenepole) {
+                    foreach (Policko ShipToPolicko in ShipToPolicko) {
+                        if (vytvorenepolicko.X == Xlodi && vytvorenepolicko.Y == Ylodi) {                    
+                            if (ShipToPolicko.state == State.Placed) {
+                                ShipToPolicko.state = State.PlacedbyShip;
+                            }
+                        }
+                    }
+                }
             }
         }
     }
