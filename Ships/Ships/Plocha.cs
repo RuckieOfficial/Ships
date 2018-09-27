@@ -10,6 +10,7 @@ namespace Ships {
         public static Plocha[,] plocha = new Plocha[10, 10];
         private static List<Policko> ShipToPolicko = new List<Policko>();
         private List<Ship> ships = new List<Ship>();
+        public bool exit = false;
 
         public static List<Policko> GeneratePlocha() {
             List<Policko> policka = new List<Policko>();
@@ -90,6 +91,9 @@ namespace Ships {
             }
             if (key.Key == ConsoleKey.RightArrow) {
                 return 4;
+            }
+            if (key.Key == ConsoleKey.Escape) {
+                return 6;
             } else {
                 return 5;
             }
@@ -213,6 +217,17 @@ namespace Ships {
                         }
                     }
                 }
+            }
+            if (sellection == 6) {
+                exit = true;
+                Console.Clear();
+                Console.WriteLine("Ukončil jste hru!");
+                Console.Write(" ██████╗  █████╗ ███╗   ███╗███████╗     ██████╗ ██╗   ██╗███████╗██████╗ \n");
+                Console.Write("██╔════╝ ██╔══██╗████╗ ████║██╔════╝    ██╔═══██╗██║   ██║██╔════╝██╔══██╗ \n");
+                Console.Write("██║  ███╗███████║██╔████╔██║█████╗      ██║   ██║██║   ██║█████╗  ██████╔╝ \n");
+                Console.Write("██║   ██║██╔══██║██║╚██╔╝██║██╔══╝      ██║   ██║╚██╗ ██╔╝██╔══╝  ██╔══██╗ \n");
+                Console.Write("╚██████╔╝██║  ██║██║ ╚═╝ ██║███████╗    ╚██████╔╝ ╚████╔╝ ███████╗██║  ██║ \n");
+                Console.Write(" ╚═════╝ ╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝     ╚═════╝   ╚═══╝  ╚══════╝╚═╝  ╚═╝ \n");
             }
         }
     }

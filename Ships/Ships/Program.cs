@@ -11,13 +11,13 @@ namespace Ships {
             Ship lode = new Ship();
             do {
                 Console.Clear();
-                Console.WriteLine("Welcome to Ships!");
+                Console.WriteLine("Welcome to Ships!\nMove: Arrows, Rotate: R, Place: Enter, Exit: Esc");
                 plocha.ShipToPolicka(plocha.Ylodi, plocha.Xlodi, State.Placed);
                 plocha.ShipToPolicka(plocha.Ylodi, plocha.Xlodi+1, State.Placed);
                 plocha.ShipToPolicka(plocha.Ylodi, plocha.Xlodi+2, State.Placed);
                 Plocha.ShowPlocha();
                 plocha.Pohyb();
-            } while (1 > 0);
+            } while (plocha.exit == false);
         }
     }
 }
