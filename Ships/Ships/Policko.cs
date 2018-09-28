@@ -29,6 +29,19 @@ namespace Ships {
         Empty,
         Placed,
         PlacedbyShip,
+        Miised,
+        Hit,
+    }
+
+    class P1Policko {
+        public int Y { get; set; }
+        public int X { get; set; }
+        public State p1state { get; set; }
+
+    }
+    enum p1state {
+        Empty,
+        Placed,
         Missed,
         Hit,
     }

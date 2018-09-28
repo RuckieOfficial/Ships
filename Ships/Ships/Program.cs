@@ -11,7 +11,7 @@ namespace Ships {
             Ship lode = new Ship();
             do {
                 Console.Clear();
-                Console.WriteLine("Welcome to Ships!\nMove: Arrows, Rotate: R, Place: Enter, Exit: Esc");
+                Console.WriteLine("Welcome to Ships!\nMove: Arrows, Place: Enter, Exit: Esc");
                 Console.WriteLine("Player1: ");
                 plocha.ShipToPolicka(plocha.Ylodi, plocha.Xlodi, State.Placed);
                 plocha.ShipToPolicka(plocha.Ylodi, plocha.Xlodi + 1, State.Placed);
@@ -28,7 +28,7 @@ namespace Ships {
                 plocha.Ylodi = 3;
                 do {
                     Console.Clear();
-                    Console.WriteLine("Welcome to Ships!\nMove: Arrows, Rotate: R, Place: Enter, Exit: Esc");
+                    Console.WriteLine("Welcome to Ships!\nMove: Arrows, Place: Enter, Exit: Esc");
                     Console.WriteLine("Player2: ");
                     plocha.EnemyShipToPolicka(plocha.Ylodi, plocha.Xlodi, State.Placed);
                     plocha.EnemyShipToPolicka(plocha.Ylodi, plocha.Xlodi + 1, State.Placed);
@@ -45,14 +45,26 @@ namespace Ships {
                     plocha.Xlodi = 3;
                     plocha.Ylodi = 3;
                     do {
-                        Console.Clear();
-                        Console.WriteLine("Welcome to Ships!\nMove: Arrows, Rotate: R, Place: Enter, Exit: Esc");
-                        Console.WriteLine("Player1: ");
-                        Plocha.ShowPlocha();
-                        Console.WriteLine("Player2: ");
-                        Plocha.ShowEnemyPlocha();
-                        plocha.EnemyPohyb();
-                    } while (plocha.exit == false && plocha.NextP == false);
+                        if (plocha.NextP == false) {
+                            Console.Clear();
+                            Console.WriteLine("Welcome to Ships!\nMove: Arrows, Place: Enter, Exit: Esc");
+                            Console.WriteLine("Player1: ");
+                            plocha.P1ToPolicka(plocha.Ylodi, plocha.Xlodi, State.Placed);
+                            Plocha.ShowP1plays();
+                            Console.WriteLine("Player2: ");
+                            Plocha.ShowEnemyPlocha();
+                            plocha.P1Pohyb();
+                        } else {
+                            /*Console.Clear();
+                            Console.WriteLine("Welcome to Ships!\nMove: Arrows, Place: Enter, Exit: Esc");
+                            Console.WriteLine("Player2: ");
+                            plocha.P1ToPolicka(plocha.Ylodi, plocha.Xlodi, State.Placed);
+                            Plocha.ShowP1plays();
+                            Console.WriteLine("Player1: ");
+                            Plocha.ShowEnemyPlocha();
+                            plocha.P1Pohyb();*/
+                        }
+                    } while (plocha.exit == false /*&& plocha.vyhra == false*/ );
                 }
             }
         }
