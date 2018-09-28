@@ -17,6 +17,9 @@ namespace Ships {
         public int ShipsPlaced = 0;
         public int Xlodi = 3;
         public int Ylodi = 3;
+        public int P1Kills = 0;
+        public int P2Kills = 0;
+        public bool Win = false;
 
         public static List<Policko> GeneratePlocha() {
             List<Policko> policka = new List<Policko>();
@@ -723,16 +726,21 @@ namespace Ships {
             }
             if (sellection == 7) {
                 List<P1Policko> vytvorenepole = GenerateP1Plocha();
-                foreach (P1Policko vytvorenepolicko in vytvorenepole) {
-                    foreach (EnemyPolicko EnemyShipToPolicko in EnemyShipToPolicko) {
-                        foreach (P1Policko P1ToPolicko in P1ToPolicko) {
-                            if (vytvorenepolicko.X == Xlodi && vytvorenepolicko.Y == Ylodi) {
-                                if (EnemyShipToPolicko.enemystate == State.PlacedbyShip) {
-                                    P1ToPolicko.p1state = State.Hit;
-                                } else {
-                                    if (EnemyShipToPolicko.enemystate != State.PlacedbyShip) {
-                                        P1ToPolicko.p1state = State.Missed;
-                                    }
+                List<EnemyPolicko> vytvorenepolenew = GenerateEnemyPlocha();
+                    foreach (P1Policko vytvorenepolicko in vytvorenepole) {
+                    foreach (P1Policko P1ToPolicko in P1ToPolicko) {
+                        foreach (EnemyPolicko vytvorenepolickonew in vytvorenepolenew) {
+                            foreach (EnemyPolicko EnemyShipToPolicko in EnemyShipToPolicko) {
+                                if (vytvorenepolicko.X == Xlodi && vytvorenepolicko.Y == Ylodi) {
+                                        if (vytvorenepolickonew.X == Xlodi && vytvorenepolickonew.Y == Ylodi) {
+                                            if (EnemyShipToPolicko.enemystate == State.Empty) {
+                                            P1ToPolicko.p1state = State.Missed;
+                                            }
+                                            if (EnemyShipToPolicko.enemystate == State.PlacedbyShip) {
+                                                P1ToPolicko.p1state = State.Hit;
+                                            P1Kills = P1Kills + 1;
+                                            }
+                                        }
                                 }
                             }
                         }

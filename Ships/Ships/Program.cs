@@ -58,13 +58,18 @@ namespace Ships {
                             /*Console.Clear();
                             Console.WriteLine("Welcome to Ships!\nMove: Arrows, Place: Enter, Exit: Esc");
                             Console.WriteLine("Player2: ");
-                            plocha.P1ToPolicka(plocha.Ylodi, plocha.Xlodi, State.Placed);
-                            Plocha.ShowP1plays();
+                            plocha.P2ToPolicka(plocha.Ylodi, plocha.Xlodi, State.Placed);
+                            Plocha.ShowP2plays();
                             Console.WriteLine("Player1: ");
-                            Plocha.ShowEnemyPlocha();
-                            plocha.P1Pohyb();*/
+                            Plocha.ShowPlocha();
+                            plocha.P2Pohyb();*/
                         }
-                    } while (plocha.exit == false /*&& plocha.vyhra == false*/ );
+                    } while (plocha.exit == false && plocha.P1Kills < 3375 && plocha.P2Kills < 3375);
+                    if (plocha.P1Kills == 15) {
+                        Console.WriteLine("Player 1 Wins!!! \nCongratulations!");
+                    } else {
+                        Console.WriteLine("Player 1 Wins!!! \nCongratulations!");
+                    }
                 }
             }
         }

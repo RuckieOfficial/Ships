@@ -11,26 +11,12 @@ namespace Ships {
         public State state { get; set; }
 
     }
-    enum State {
-        Empty,
-        Placed,
-        PlacedbyShip,
-        Missed,
-        Hit,
-    }
 
     class EnemyPolicko {
         public int Y { get; set; }
         public int X { get; set; }
         public State enemystate { get; set; }
 
-    }
-    enum enemystate {
-        Empty,
-        Placed,
-        PlacedbyShip,
-        Miised,
-        Hit,
     }
 
     class P1Policko {
@@ -39,9 +25,10 @@ namespace Ships {
         public State p1state { get; set; }
 
     }
-    enum p1state {
+    enum State {
         Empty,
         Placed,
+        PlacedbyShip,
         Missed,
         Hit,
     }
