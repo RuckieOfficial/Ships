@@ -5,8 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace Ships {
-    class Plocha {
+namespace Ships
+{
+    class Plocha
+    {
         public static Plocha[,] plocha = new Plocha[10, 10];
         private static List<Policko> ShipToPolicko = new List<Policko>();
         private static List<EnemyPolicko> EnemyShipToPolicko = new List<EnemyPolicko>();
@@ -21,11 +23,15 @@ namespace Ships {
         public int P2Kills = 0;
         public bool Win = false;
 
-        public static List<Policko> GeneratePlocha() {
+        public static List<Policko> GeneratePlocha()
+        {
             List<Policko> policka = new List<Policko>();
-            for (int x = 0; x < plocha.GetLength(0); x++) {
-                for (int y = 0; y < plocha.GetLength(1); y++) {
-                    policka.Add(new Policko {
+            for (int x = 0; x < plocha.GetLength(0); x++)
+            {
+                for (int y = 0; y < plocha.GetLength(1); y++)
+                {
+                    policka.Add(new Policko
+                    {
                         X = x,
                         Y = y,
                         state = State.Empty
@@ -35,11 +41,15 @@ namespace Ships {
             return policka;
         }
 
-        public static List<EnemyPolicko> GenerateEnemyPlocha() {
+        public static List<EnemyPolicko> GenerateEnemyPlocha()
+        {
             List<EnemyPolicko> policka = new List<EnemyPolicko>();
-            for (int x = 0; x < plocha.GetLength(0); x++) {
-                for (int y = 0; y < plocha.GetLength(1); y++) {
-                    policka.Add(new EnemyPolicko {
+            for (int x = 0; x < plocha.GetLength(0); x++)
+            {
+                for (int y = 0; y < plocha.GetLength(1); y++)
+                {
+                    policka.Add(new EnemyPolicko
+                    {
                         X = x,
                         Y = y,
                         enemystate = State.Empty
@@ -49,11 +59,15 @@ namespace Ships {
             return policka;
         }
 
-        public static List<P1Policko> GenerateP1Plocha() {
+        public static List<P1Policko> GenerateP1Plocha()
+        {
             List<P1Policko> policka = new List<P1Policko>();
-            for (int x = 0; x < plocha.GetLength(0); x++) {
-                for (int y = 0; y < plocha.GetLength(1); y++) {
-                    policka.Add(new P1Policko {
+            for (int x = 0; x < plocha.GetLength(0); x++)
+            {
+                for (int y = 0; y < plocha.GetLength(1); y++)
+                {
+                    policka.Add(new P1Policko
+                    {
                         X = x,
                         Y = y,
                         p1state = State.Empty
@@ -63,47 +77,61 @@ namespace Ships {
             return policka;
         }
 
-        public void ShipToPolicka(int x, int y, State state) {
-            ShipToPolicko.Add(new Policko {
+        public void ShipToPolicka(int x, int y, State state)
+        {
+            ShipToPolicko.Add(new Policko
+            {
                 X = x,
                 Y = y,
                 state = state
             });
         }
 
-        public void EnemyShipToPolicka(int x, int y, State enemystate) {
-            EnemyShipToPolicko.Add(new EnemyPolicko {
+        public void EnemyShipToPolicka(int x, int y, State enemystate)
+        {
+            EnemyShipToPolicko.Add(new EnemyPolicko
+            {
                 X = x,
                 Y = y,
                 enemystate = enemystate
             });
         }
 
-        public void P1ToPolicka(int x, int y, State p1state) {
-            P1ToPolicko.Add(new P1Policko {
+        public void P1ToPolicka(int x, int y, State p1state)
+        {
+            P1ToPolicko.Add(new P1Policko
+            {
                 X = x,
                 Y = y,
                 p1state = p1state
             });
         }
 
-        public static void ShowPlocha() {
+        public static void ShowPlocha()
+        {
             List<Policko> vytvorenepole = GeneratePlocha();
             bool dalsipole = false;
             int index2 = 1;
-            foreach (Policko vytvorenepolicko in vytvorenepole) {
-                foreach (Policko ShipToPolicko in ShipToPolicko) {
-                    if (vytvorenepolicko.X == ShipToPolicko.X && vytvorenepolicko.Y == ShipToPolicko.Y) {
-                        if (ShipToPolicko.state == State.Placed) {
-                            if (!dalsipole) {
+            foreach (Policko vytvorenepolicko in vytvorenepole)
+            {
+                foreach (Policko ShipToPolicko in ShipToPolicko)
+                {
+                    if (vytvorenepolicko.X == ShipToPolicko.X && vytvorenepolicko.Y == ShipToPolicko.Y)
+                    {
+                        if (ShipToPolicko.state == State.Placed)
+                        {
+                            if (!dalsipole)
+                            {
                                 Console.Write(" ");
                                 Console.BackgroundColor = ConsoleColor.Blue;
                                 Console.Write("Q");
                                 dalsipole = true;
                             }
                         }
-                        if (ShipToPolicko.state == State.PlacedbyShip) {
-                            if (!dalsipole) {
+                        if (ShipToPolicko.state == State.PlacedbyShip)
+                        {
+                            if (!dalsipole)
+                            {
                                 Console.Write(" ");
                                 Console.BackgroundColor = ConsoleColor.DarkGreen;
                                 Console.Write("Q");
@@ -114,14 +142,16 @@ namespace Ships {
                     }
                 }
 
-                if (!dalsipole) {
+                if (!dalsipole)
+                {
                     Console.BackgroundColor = ConsoleColor.Black;
                     Console.Write(" ");
                     Console.Write("L");
                 }
                 dalsipole = false;
 
-                if (index2 == plocha.GetLength(0)) {
+                if (index2 == plocha.GetLength(0))
+                {
                     Console.WriteLine();
                     index2 = 0;
                 }
@@ -129,23 +159,31 @@ namespace Ships {
             }
         }
 
-        public static void ShowEnemyPlocha() {
+        public static void ShowEnemyPlocha()
+        {
             List<EnemyPolicko> vytvorenepole = GenerateEnemyPlocha();
             bool dalsipole = false;
             int index2 = 1;
-            foreach (EnemyPolicko vytvorenepolicko in vytvorenepole) {
-                foreach (EnemyPolicko EnemyShipToPolicko in EnemyShipToPolicko) {
-                    if (vytvorenepolicko.X == EnemyShipToPolicko.X && vytvorenepolicko.Y == EnemyShipToPolicko.Y) {
-                        if (EnemyShipToPolicko.enemystate == State.Placed) {
-                            if (!dalsipole) {
+            foreach (EnemyPolicko vytvorenepolicko in vytvorenepole)
+            {
+                foreach (EnemyPolicko EnemyShipToPolicko in EnemyShipToPolicko)
+                {
+                    if (vytvorenepolicko.X == EnemyShipToPolicko.X && vytvorenepolicko.Y == EnemyShipToPolicko.Y)
+                    {
+                        if (EnemyShipToPolicko.enemystate == State.Placed)
+                        {
+                            if (!dalsipole)
+                            {
                                 Console.Write(" ");
                                 Console.BackgroundColor = ConsoleColor.Blue;
                                 Console.Write("Q");
                                 dalsipole = true;
                             }
                         }
-                        if (EnemyShipToPolicko.enemystate == State.PlacedbyShip) {
-                            if (!dalsipole) {
+                        if (EnemyShipToPolicko.enemystate == State.PlacedbyShip)
+                        {
+                            if (!dalsipole)
+                            {
                                 Console.Write(" ");
                                 Console.BackgroundColor = ConsoleColor.DarkGreen;
                                 Console.Write("Q");
@@ -156,14 +194,16 @@ namespace Ships {
                     }
                 }
 
-                if (!dalsipole) {
+                if (!dalsipole)
+                {
                     Console.BackgroundColor = ConsoleColor.Black;
                     Console.Write(" ");
                     Console.Write("L");
                 }
                 dalsipole = false;
 
-                if (index2 == plocha.GetLength(0)) {
+                if (index2 == plocha.GetLength(0))
+                {
                     Console.WriteLine();
                     index2 = 0;
                 }
@@ -171,31 +211,41 @@ namespace Ships {
             }
         }
 
-        public static void ShowP1plays() {
+        public static void ShowP1plays()
+        {
             List<P1Policko> vytvorenepole = GenerateP1Plocha();
             bool dalsipole = false;
             int index3 = 1;
-            foreach (P1Policko vytvorenepolicko in vytvorenepole) {
-                foreach (P1Policko P1ToPolicko in P1ToPolicko) {
-                    if (vytvorenepolicko.X == P1ToPolicko.X && vytvorenepolicko.Y == P1ToPolicko.Y) {
-                        if (P1ToPolicko.p1state == State.Placed) {
-                            if (!dalsipole) {
+            foreach (P1Policko vytvorenepolicko in vytvorenepole)
+            {
+                foreach (P1Policko P1ToPolicko in P1ToPolicko)
+                {
+                    if (vytvorenepolicko.X == P1ToPolicko.X && vytvorenepolicko.Y == P1ToPolicko.Y)
+                    {
+                        if (P1ToPolicko.p1state == State.Placed)
+                        {
+                            if (!dalsipole)
+                            {
                                 Console.Write(" ");
                                 Console.BackgroundColor = ConsoleColor.DarkBlue;
                                 Console.Write("O");
                                 dalsipole = true;
                             }
                         }
-                        if (P1ToPolicko.p1state == State.Missed) {
-                            if (!dalsipole) {
+                        if (P1ToPolicko.p1state == State.Missed)
+                        {
+                            if (!dalsipole)
+                            {
                                 Console.Write(" ");
                                 Console.BackgroundColor = ConsoleColor.Blue;
                                 Console.Write("0");
                                 dalsipole = true;
                             }
                         }
-                        if (P1ToPolicko.p1state == State.Hit) {
-                            if (!dalsipole) {
+                        if (P1ToPolicko.p1state == State.Hit)
+                        {
+                            if (!dalsipole)
+                            {
                                 Console.Write(" ");
                                 Console.BackgroundColor = ConsoleColor.Red;
                                 Console.Write("X");
@@ -205,14 +255,16 @@ namespace Ships {
                     }
                 }
 
-                if (!dalsipole) {
+                if (!dalsipole)
+                {
                     Console.BackgroundColor = ConsoleColor.Black;
                     Console.Write(" ");
                     Console.Write("L");
                 }
                 dalsipole = false;
 
-                if (index3 == plocha.GetLength(0)) {
+                if (index3 == plocha.GetLength(0))
+                {
                     Console.WriteLine();
                     index3 = 0;
                 }
@@ -220,53 +272,75 @@ namespace Ships {
             }
         }
 
-        public int GetKey() {
+        public int GetKey()
+        {
             var key = Console.ReadKey();
 
-            if (key.Key == ConsoleKey.LeftArrow) {
+            if (key.Key == ConsoleKey.LeftArrow)
+            {
                 return 1;
             }
-            if (key.Key == ConsoleKey.UpArrow) {
+            if (key.Key == ConsoleKey.UpArrow)
+            {
                 return 2;
             }
-            if (key.Key == ConsoleKey.DownArrow) {
+            if (key.Key == ConsoleKey.DownArrow)
+            {
                 return 3;
             }
-            if (key.Key == ConsoleKey.RightArrow) {
+            if (key.Key == ConsoleKey.RightArrow)
+            {
                 return 4;
             }
-            if (key.Key == ConsoleKey.Escape) {
+            if (key.Key == ConsoleKey.Escape)
+            {
                 return 6;
             }
-            if (key.Key == ConsoleKey.Enter) {
+            if (key.Key == ConsoleKey.Enter)
+            {
                 return 7;
-            } else {
+            }
+            else
+            {
                 return 5;
             }
         }
-        public void Pohyb() {
+        public void Pohyb()
+        {
             Plocha plocha = new Plocha();
             int sellection = GetKey();
 
-            if (sellection == 1) {
-                if (Xlodi >= 1) {
+            if (sellection == 1)
+            {
+                if (Xlodi >= 1)
+                {
                     List<Policko> vytvorenepole = GeneratePlocha();
-                    foreach (Policko vytvorenepolicko in vytvorenepole) {
-                        foreach (Policko ShipToPolicko in ShipToPolicko) {
-                            if (vytvorenepolicko.X == Xlodi && vytvorenepolicko.Y == Ylodi) {
-                                if (ShipToPolicko.state == State.Placed) {
+                    foreach (Policko vytvorenepolicko in vytvorenepole)
+                    {
+                        foreach (Policko ShipToPolicko in ShipToPolicko)
+                        {
+                            if (vytvorenepolicko.X == Xlodi && vytvorenepolicko.Y == Ylodi)
+                            {
+                                if (ShipToPolicko.state == State.Placed)
+                                {
                                     ShipToPolicko.state = State.Empty;
                                 }
                             }
                         }
                     }
                     Xlodi = Xlodi - 1;
-                } else {
+                }
+                else
+                {
                     List<Policko> vytvorenepole = GeneratePlocha();
-                    foreach (Policko vytvorenepolicko in vytvorenepole) {
-                        foreach (Policko ShipToPolicko in ShipToPolicko) {
-                            if (vytvorenepolicko.X == Xlodi && vytvorenepolicko.Y == Ylodi) {
-                                if (ShipToPolicko.state == State.Placed) {
+                    foreach (Policko vytvorenepolicko in vytvorenepole)
+                    {
+                        foreach (Policko ShipToPolicko in ShipToPolicko)
+                        {
+                            if (vytvorenepolicko.X == Xlodi && vytvorenepolicko.Y == Ylodi)
+                            {
+                                if (ShipToPolicko.state == State.Placed)
+                                {
                                     ShipToPolicko.state = State.Empty;
                                 }
                             }
@@ -274,25 +348,37 @@ namespace Ships {
                     }
                 }
             }
-            if (sellection == 2) {
-                if (Ylodi >= 1) {
+            if (sellection == 2)
+            {
+                if (Ylodi >= 1)
+                {
                     List<Policko> vytvorenepole = GeneratePlocha();
-                    foreach (Policko vytvorenepolicko in vytvorenepole) {
-                        foreach (Policko ShipToPolicko in ShipToPolicko) {
-                            if (vytvorenepolicko.X == Xlodi && vytvorenepolicko.Y == Ylodi) {
-                                if (ShipToPolicko.state == State.Placed) {
+                    foreach (Policko vytvorenepolicko in vytvorenepole)
+                    {
+                        foreach (Policko ShipToPolicko in ShipToPolicko)
+                        {
+                            if (vytvorenepolicko.X == Xlodi && vytvorenepolicko.Y == Ylodi)
+                            {
+                                if (ShipToPolicko.state == State.Placed)
+                                {
                                     ShipToPolicko.state = State.Empty;
                                 }
                             }
                         }
                     }
                     Ylodi = Ylodi - 1;
-                } else {
+                }
+                else
+                {
                     List<Policko> vytvorenepole = GeneratePlocha();
-                    foreach (Policko vytvorenepolicko in vytvorenepole) {
-                        foreach (Policko ShipToPolicko in ShipToPolicko) {
-                            if (vytvorenepolicko.X == Xlodi && vytvorenepolicko.Y == Ylodi) {
-                                if (ShipToPolicko.state == State.Placed) {
+                    foreach (Policko vytvorenepolicko in vytvorenepole)
+                    {
+                        foreach (Policko ShipToPolicko in ShipToPolicko)
+                        {
+                            if (vytvorenepolicko.X == Xlodi && vytvorenepolicko.Y == Ylodi)
+                            {
+                                if (ShipToPolicko.state == State.Placed)
+                                {
                                     ShipToPolicko.state = State.Empty;
                                 }
                             }
@@ -300,25 +386,37 @@ namespace Ships {
                     }
                 }
             }
-            if (sellection == 3) {
-                if (Ylodi <= 8) {
+            if (sellection == 3)
+            {
+                if (Ylodi <= 8)
+                {
                     List<Policko> vytvorenepole = GeneratePlocha();
-                    foreach (Policko vytvorenepolicko in vytvorenepole) {
-                        foreach (Policko ShipToPolicko in ShipToPolicko) {
-                            if (vytvorenepolicko.X == Xlodi && vytvorenepolicko.Y == Ylodi) {
-                                if (ShipToPolicko.state == State.Placed) {
+                    foreach (Policko vytvorenepolicko in vytvorenepole)
+                    {
+                        foreach (Policko ShipToPolicko in ShipToPolicko)
+                        {
+                            if (vytvorenepolicko.X == Xlodi && vytvorenepolicko.Y == Ylodi)
+                            {
+                                if (ShipToPolicko.state == State.Placed)
+                                {
                                     ShipToPolicko.state = State.Empty;
                                 }
                             }
                         }
                     }
                     Ylodi = Ylodi + 1;
-                } else {
+                }
+                else
+                {
                     List<Policko> vytvorenepole = GeneratePlocha();
-                    foreach (Policko vytvorenepolicko in vytvorenepole) {
-                        foreach (Policko ShipToPolicko in ShipToPolicko) {
-                            if (vytvorenepolicko.X == Xlodi && vytvorenepolicko.Y == Ylodi) {
-                                if (ShipToPolicko.state == State.Placed) {
+                    foreach (Policko vytvorenepolicko in vytvorenepole)
+                    {
+                        foreach (Policko ShipToPolicko in ShipToPolicko)
+                        {
+                            if (vytvorenepolicko.X == Xlodi && vytvorenepolicko.Y == Ylodi)
+                            {
+                                if (ShipToPolicko.state == State.Placed)
+                                {
                                     ShipToPolicko.state = State.Empty;
                                 }
                             }
@@ -326,25 +424,37 @@ namespace Ships {
                     }
                 }
             }
-            if (sellection == 4) {
-                if (Xlodi <= 6) {
+            if (sellection == 4)
+            {
+                if (Xlodi <= 6)
+                {
                     List<Policko> vytvorenepole = GeneratePlocha();
-                    foreach (Policko vytvorenepolicko in vytvorenepole) {
-                        foreach (Policko ShipToPolicko in ShipToPolicko) {
-                            if (vytvorenepolicko.X == Xlodi && vytvorenepolicko.Y == Ylodi) {
-                                if (ShipToPolicko.state == State.Placed) {
+                    foreach (Policko vytvorenepolicko in vytvorenepole)
+                    {
+                        foreach (Policko ShipToPolicko in ShipToPolicko)
+                        {
+                            if (vytvorenepolicko.X == Xlodi && vytvorenepolicko.Y == Ylodi)
+                            {
+                                if (ShipToPolicko.state == State.Placed)
+                                {
                                     ShipToPolicko.state = State.Empty;
                                 }
                             }
                         }
                     }
                     Xlodi = Xlodi + 1;
-                } else {
+                }
+                else
+                {
                     List<Policko> vytvorenepole = GeneratePlocha();
-                    foreach (Policko vytvorenepolicko in vytvorenepole) {
-                        foreach (Policko ShipToPolicko in ShipToPolicko) {
-                            if (vytvorenepolicko.X == Xlodi && vytvorenepolicko.Y == Ylodi) {
-                                if (ShipToPolicko.state == State.Placed) {
+                    foreach (Policko vytvorenepolicko in vytvorenepole)
+                    {
+                        foreach (Policko ShipToPolicko in ShipToPolicko)
+                        {
+                            if (vytvorenepolicko.X == Xlodi && vytvorenepolicko.Y == Ylodi)
+                            {
+                                if (ShipToPolicko.state == State.Placed)
+                                {
                                     ShipToPolicko.state = State.Empty;
                                 }
                             }
@@ -352,19 +462,25 @@ namespace Ships {
                     }
                 }
             }
-            if (sellection == 5) {
+            if (sellection == 5)
+            {
                 List<Policko> vytvorenepole = GeneratePlocha();
-                foreach (Policko vytvorenepolicko in vytvorenepole) {
-                    foreach (Policko ShipToPolicko in ShipToPolicko) {
-                        if (vytvorenepolicko.X == Xlodi && vytvorenepolicko.Y == Ylodi) {
-                            if (ShipToPolicko.state == State.Placed) {
+                foreach (Policko vytvorenepolicko in vytvorenepole)
+                {
+                    foreach (Policko ShipToPolicko in ShipToPolicko)
+                    {
+                        if (vytvorenepolicko.X == Xlodi && vytvorenepolicko.Y == Ylodi)
+                        {
+                            if (ShipToPolicko.state == State.Placed)
+                            {
                                 ShipToPolicko.state = State.Empty;
                             }
                         }
                     }
                 }
             }
-            if (sellection == 6) {
+            if (sellection == 6)
+            {
                 exit = true;
                 Console.Clear();
                 Console.WriteLine("Exiting game...");
@@ -375,16 +491,23 @@ namespace Ships {
                 Console.Write("╚██████╔╝██║  ██║██║ ╚═╝ ██║███████╗    ╚██████╔╝ ╚████╔╝ ███████╗██║  ██║ \n");
                 Console.Write(" ╚═════╝ ╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝     ╚═════╝   ╚═══╝  ╚══════╝╚═╝  ╚═╝ \n");
             }
-            if (sellection == 7) {
+            if (sellection == 7)
+            {
                 List<Policko> vytvorenepole = GeneratePlocha();
-                foreach (Policko vytvorenepolicko in vytvorenepole) {
-                    foreach (Policko ShipToPolicko in ShipToPolicko) {
-                        if (vytvorenepolicko.X == Xlodi && vytvorenepolicko.Y == Ylodi) {
-                            if (ShipToPolicko.state != State.PlacedbyShip) {
-                                if (ShipToPolicko.state == State.Placed) {
+                foreach (Policko vytvorenepolicko in vytvorenepole)
+                {
+                    foreach (Policko ShipToPolicko in ShipToPolicko)
+                    {
+                        if (vytvorenepolicko.X == Xlodi && vytvorenepolicko.Y == Ylodi)
+                        {
+                            if (ShipToPolicko.state != State.PlacedbyShip)
+                            {
+                                if (ShipToPolicko.state == State.Placed)
+                                {
                                     ShipToPolicko.state = State.PlacedbyShip;
                                     ShipsPlaced++;
-                                    if (ShipsPlaced == 15) {
+                                    if (ShipsPlaced == 15)
+                                    {
                                         NextP = true;
                                     }
                                 }
@@ -395,53 +518,75 @@ namespace Ships {
             }
         }
 
-        public int GetEnemyKey() {
+        public int GetEnemyKey()
+        {
             var key = Console.ReadKey();
 
-            if (key.Key == ConsoleKey.LeftArrow) {
+            if (key.Key == ConsoleKey.LeftArrow)
+            {
                 return 1;
             }
-            if (key.Key == ConsoleKey.UpArrow) {
+            if (key.Key == ConsoleKey.UpArrow)
+            {
                 return 2;
             }
-            if (key.Key == ConsoleKey.DownArrow) {
+            if (key.Key == ConsoleKey.DownArrow)
+            {
                 return 3;
             }
-            if (key.Key == ConsoleKey.RightArrow) {
+            if (key.Key == ConsoleKey.RightArrow)
+            {
                 return 4;
             }
-            if (key.Key == ConsoleKey.Escape) {
+            if (key.Key == ConsoleKey.Escape)
+            {
                 return 6;
             }
-            if (key.Key == ConsoleKey.Enter) {
+            if (key.Key == ConsoleKey.Enter)
+            {
                 return 7;
-            } else {
+            }
+            else
+            {
                 return 5;
             }
         }
-        public void EnemyPohyb() {
+        public void EnemyPohyb()
+        {
             Plocha plocha = new Plocha();
             int sellection = GetEnemyKey();
 
-            if (sellection == 1) {
-                if (Xlodi >= 1) {
+            if (sellection == 1)
+            {
+                if (Xlodi >= 1)
+                {
                     List<EnemyPolicko> vytvorenepole = GenerateEnemyPlocha();
-                    foreach (EnemyPolicko vytvorenepolicko in vytvorenepole) {
-                        foreach (EnemyPolicko EnemyShipToPolicko in EnemyShipToPolicko) {
-                            if (vytvorenepolicko.X == Xlodi && vytvorenepolicko.Y == Ylodi) {
-                                if (EnemyShipToPolicko.enemystate == State.Placed) {
+                    foreach (EnemyPolicko vytvorenepolicko in vytvorenepole)
+                    {
+                        foreach (EnemyPolicko EnemyShipToPolicko in EnemyShipToPolicko)
+                        {
+                            if (vytvorenepolicko.X == Xlodi && vytvorenepolicko.Y == Ylodi)
+                            {
+                                if (EnemyShipToPolicko.enemystate == State.Placed)
+                                {
                                     EnemyShipToPolicko.enemystate = State.Empty;
                                 }
                             }
                         }
                     }
                     Xlodi = Xlodi - 1;
-                } else {
+                }
+                else
+                {
                     List<EnemyPolicko> vytvorenepole = GenerateEnemyPlocha();
-                    foreach (EnemyPolicko vytvorenepolicko in vytvorenepole) {
-                        foreach (EnemyPolicko EnemyShipToPolicko in EnemyShipToPolicko) {
-                            if (vytvorenepolicko.X == Xlodi && vytvorenepolicko.Y == Ylodi) {
-                                if (EnemyShipToPolicko.enemystate == State.Placed) {
+                    foreach (EnemyPolicko vytvorenepolicko in vytvorenepole)
+                    {
+                        foreach (EnemyPolicko EnemyShipToPolicko in EnemyShipToPolicko)
+                        {
+                            if (vytvorenepolicko.X == Xlodi && vytvorenepolicko.Y == Ylodi)
+                            {
+                                if (EnemyShipToPolicko.enemystate == State.Placed)
+                                {
                                     EnemyShipToPolicko.enemystate = State.Empty;
                                 }
                             }
@@ -449,25 +594,37 @@ namespace Ships {
                     }
                 }
             }
-            if (sellection == 2) {
-                if (Ylodi >= 1) {
+            if (sellection == 2)
+            {
+                if (Ylodi >= 1)
+                {
                     List<EnemyPolicko> vytvorenepole = GenerateEnemyPlocha();
-                    foreach (EnemyPolicko vytvorenepolicko in vytvorenepole) {
-                        foreach (EnemyPolicko EnemyShipToPolicko in EnemyShipToPolicko) {
-                            if (vytvorenepolicko.X == Xlodi && vytvorenepolicko.Y == Ylodi) {
-                                if (EnemyShipToPolicko.enemystate == State.Placed) {
+                    foreach (EnemyPolicko vytvorenepolicko in vytvorenepole)
+                    {
+                        foreach (EnemyPolicko EnemyShipToPolicko in EnemyShipToPolicko)
+                        {
+                            if (vytvorenepolicko.X == Xlodi && vytvorenepolicko.Y == Ylodi)
+                            {
+                                if (EnemyShipToPolicko.enemystate == State.Placed)
+                                {
                                     EnemyShipToPolicko.enemystate = State.Empty;
                                 }
                             }
                         }
                     }
                     Ylodi = Ylodi - 1;
-                } else {
+                }
+                else
+                {
                     List<EnemyPolicko> vytvorenepole = GenerateEnemyPlocha();
-                    foreach (EnemyPolicko vytvorenepolicko in vytvorenepole) {
-                        foreach (EnemyPolicko EnemyShipToPolicko in EnemyShipToPolicko) {
-                            if (vytvorenepolicko.X == Xlodi && vytvorenepolicko.Y == Ylodi) {
-                                if (EnemyShipToPolicko.enemystate == State.Placed) {
+                    foreach (EnemyPolicko vytvorenepolicko in vytvorenepole)
+                    {
+                        foreach (EnemyPolicko EnemyShipToPolicko in EnemyShipToPolicko)
+                        {
+                            if (vytvorenepolicko.X == Xlodi && vytvorenepolicko.Y == Ylodi)
+                            {
+                                if (EnemyShipToPolicko.enemystate == State.Placed)
+                                {
                                     EnemyShipToPolicko.enemystate = State.Empty;
                                 }
                             }
@@ -475,25 +632,37 @@ namespace Ships {
                     }
                 }
             }
-            if (sellection == 3) {
-                if (Ylodi <= 8) {
+            if (sellection == 3)
+            {
+                if (Ylodi <= 8)
+                {
                     List<EnemyPolicko> vytvorenepole = GenerateEnemyPlocha();
-                    foreach (EnemyPolicko vytvorenepolicko in vytvorenepole) {
-                        foreach (EnemyPolicko EnemyShipToPolicko in EnemyShipToPolicko) {
-                            if (vytvorenepolicko.X == Xlodi && vytvorenepolicko.Y == Ylodi) {
-                                if (EnemyShipToPolicko.enemystate == State.Placed) {
+                    foreach (EnemyPolicko vytvorenepolicko in vytvorenepole)
+                    {
+                        foreach (EnemyPolicko EnemyShipToPolicko in EnemyShipToPolicko)
+                        {
+                            if (vytvorenepolicko.X == Xlodi && vytvorenepolicko.Y == Ylodi)
+                            {
+                                if (EnemyShipToPolicko.enemystate == State.Placed)
+                                {
                                     EnemyShipToPolicko.enemystate = State.Empty;
                                 }
                             }
                         }
                     }
                     Ylodi = Ylodi + 1;
-                } else {
+                }
+                else
+                {
                     List<EnemyPolicko> vytvorenepole = GenerateEnemyPlocha();
-                    foreach (EnemyPolicko vytvorenepolicko in vytvorenepole) {
-                        foreach (EnemyPolicko EnemyShipToPolicko in EnemyShipToPolicko) {
-                            if (vytvorenepolicko.X == Xlodi && vytvorenepolicko.Y == Ylodi) {
-                                if (EnemyShipToPolicko.enemystate == State.Placed) {
+                    foreach (EnemyPolicko vytvorenepolicko in vytvorenepole)
+                    {
+                        foreach (EnemyPolicko EnemyShipToPolicko in EnemyShipToPolicko)
+                        {
+                            if (vytvorenepolicko.X == Xlodi && vytvorenepolicko.Y == Ylodi)
+                            {
+                                if (EnemyShipToPolicko.enemystate == State.Placed)
+                                {
                                     EnemyShipToPolicko.enemystate = State.Empty;
                                 }
                             }
@@ -501,25 +670,37 @@ namespace Ships {
                     }
                 }
             }
-            if (sellection == 4) {
-                if (Xlodi <= 6) {
+            if (sellection == 4)
+            {
+                if (Xlodi <= 6)
+                {
                     List<EnemyPolicko> vytvorenepole = GenerateEnemyPlocha();
-                    foreach (EnemyPolicko vytvorenepolicko in vytvorenepole) {
-                        foreach (EnemyPolicko EnemyShipToPolicko in EnemyShipToPolicko) {
-                            if (vytvorenepolicko.X == Xlodi && vytvorenepolicko.Y == Ylodi) {
-                                if (EnemyShipToPolicko.enemystate == State.Placed) {
+                    foreach (EnemyPolicko vytvorenepolicko in vytvorenepole)
+                    {
+                        foreach (EnemyPolicko EnemyShipToPolicko in EnemyShipToPolicko)
+                        {
+                            if (vytvorenepolicko.X == Xlodi && vytvorenepolicko.Y == Ylodi)
+                            {
+                                if (EnemyShipToPolicko.enemystate == State.Placed)
+                                {
                                     EnemyShipToPolicko.enemystate = State.Empty;
                                 }
                             }
                         }
                     }
                     Xlodi = Xlodi + 1;
-                } else {
+                }
+                else
+                {
                     List<EnemyPolicko> vytvorenepole = GenerateEnemyPlocha();
-                    foreach (EnemyPolicko vytvorenepolicko in vytvorenepole) {
-                        foreach (EnemyPolicko EnemyShipToPolicko in EnemyShipToPolicko) {
-                            if (vytvorenepolicko.X == Xlodi && vytvorenepolicko.Y == Ylodi) {
-                                if (EnemyShipToPolicko.enemystate == State.Placed) {
+                    foreach (EnemyPolicko vytvorenepolicko in vytvorenepole)
+                    {
+                        foreach (EnemyPolicko EnemyShipToPolicko in EnemyShipToPolicko)
+                        {
+                            if (vytvorenepolicko.X == Xlodi && vytvorenepolicko.Y == Ylodi)
+                            {
+                                if (EnemyShipToPolicko.enemystate == State.Placed)
+                                {
                                     EnemyShipToPolicko.enemystate = State.Empty;
                                 }
                             }
@@ -527,19 +708,25 @@ namespace Ships {
                     }
                 }
             }
-            if (sellection == 5) {
+            if (sellection == 5)
+            {
                 List<EnemyPolicko> vytvorenepole = GenerateEnemyPlocha();
-                foreach (EnemyPolicko vytvorenepolicko in vytvorenepole) {
-                    foreach (EnemyPolicko EnemyShipToPolicko in EnemyShipToPolicko) {
-                        if (vytvorenepolicko.X == Xlodi && vytvorenepolicko.Y == Ylodi) {
-                            if (EnemyShipToPolicko.enemystate == State.Placed) {
+                foreach (EnemyPolicko vytvorenepolicko in vytvorenepole)
+                {
+                    foreach (EnemyPolicko EnemyShipToPolicko in EnemyShipToPolicko)
+                    {
+                        if (vytvorenepolicko.X == Xlodi && vytvorenepolicko.Y == Ylodi)
+                        {
+                            if (EnemyShipToPolicko.enemystate == State.Placed)
+                            {
                                 EnemyShipToPolicko.enemystate = State.Empty;
                             }
                         }
                     }
                 }
             }
-            if (sellection == 6) {
+            if (sellection == 6)
+            {
                 exit = true;
                 Console.Clear();
                 Console.WriteLine("Exiting game...");
@@ -550,16 +737,23 @@ namespace Ships {
                 Console.Write("╚██████╔╝██║  ██║██║ ╚═╝ ██║███████╗    ╚██████╔╝ ╚████╔╝ ███████╗██║  ██║ \n");
                 Console.Write(" ╚═════╝ ╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝     ╚═════╝   ╚═══╝  ╚══════╝╚═╝  ╚═╝ \n");
             }
-            if (sellection == 7) {
+            if (sellection == 7)
+            {
                 List<EnemyPolicko> vytvorenepole = GenerateEnemyPlocha();
-                foreach (EnemyPolicko vytvorenepolicko in vytvorenepole) {
-                    foreach (EnemyPolicko EnemyShipToPolicko in EnemyShipToPolicko) {
-                        if (vytvorenepolicko.X == Xlodi && vytvorenepolicko.Y == Ylodi) {
-                            if (EnemyShipToPolicko.enemystate != State.PlacedbyShip) {
-                                if (EnemyShipToPolicko.enemystate == State.Placed) {
+                foreach (EnemyPolicko vytvorenepolicko in vytvorenepole)
+                {
+                    foreach (EnemyPolicko EnemyShipToPolicko in EnemyShipToPolicko)
+                    {
+                        if (vytvorenepolicko.X == Xlodi && vytvorenepolicko.Y == Ylodi)
+                        {
+                            if (EnemyShipToPolicko.enemystate != State.PlacedbyShip)
+                            {
+                                if (EnemyShipToPolicko.enemystate == State.Placed)
+                                {
                                     EnemyShipToPolicko.enemystate = State.PlacedbyShip;
                                     ShipsPlaced--;
-                                    if (ShipsPlaced == 0) {
+                                    if (ShipsPlaced == 0)
+                                    {
                                         NextP = false;
                                     }
                                 }
@@ -569,53 +763,75 @@ namespace Ships {
                 }
             }
         }
-        public int GetP1Key() {
+        public int GetP1Key()
+        {
             var key = Console.ReadKey();
 
-            if (key.Key == ConsoleKey.LeftArrow) {
+            if (key.Key == ConsoleKey.LeftArrow)
+            {
                 return 1;
             }
-            if (key.Key == ConsoleKey.UpArrow) {
+            if (key.Key == ConsoleKey.UpArrow)
+            {
                 return 2;
             }
-            if (key.Key == ConsoleKey.DownArrow) {
+            if (key.Key == ConsoleKey.DownArrow)
+            {
                 return 3;
             }
-            if (key.Key == ConsoleKey.RightArrow) {
+            if (key.Key == ConsoleKey.RightArrow)
+            {
                 return 4;
             }
-            if (key.Key == ConsoleKey.Escape) {
+            if (key.Key == ConsoleKey.Escape)
+            {
                 return 6;
             }
-            if (key.Key == ConsoleKey.Enter) {
+            if (key.Key == ConsoleKey.Enter)
+            {
                 return 7;
-            } else {
+            }
+            else
+            {
                 return 5;
             }
         }
-        public void P1Pohyb() {
+        public void P1Pohyb()
+        {
             Plocha plocha = new Plocha();
             int sellection = GetP1Key();
 
-            if (sellection == 1) {
-                if (Xlodi >= 1) {
+            if (sellection == 1)
+            {
+                if (Xlodi >= 1)
+                {
                     List<P1Policko> vytvorenepole = GenerateP1Plocha();
-                    foreach (P1Policko vytvorenepolicko in vytvorenepole) {
-                        foreach (P1Policko P1ToPolicko in P1ToPolicko) {
-                            if (vytvorenepolicko.X == Xlodi && vytvorenepolicko.Y == Ylodi) {
-                                if (P1ToPolicko.p1state == State.Placed) {
+                    foreach (P1Policko vytvorenepolicko in vytvorenepole)
+                    {
+                        foreach (P1Policko P1ToPolicko in P1ToPolicko)
+                        {
+                            if (vytvorenepolicko.X == Xlodi && vytvorenepolicko.Y == Ylodi)
+                            {
+                                if (P1ToPolicko.p1state == State.Placed)
+                                {
                                     P1ToPolicko.p1state = State.Empty;
                                 }
                             }
                         }
                     }
                     Xlodi = Xlodi - 1;
-                } else {
+                }
+                else
+                {
                     List<P1Policko> vytvorenepole = GenerateP1Plocha();
-                    foreach (P1Policko vytvorenepolicko in vytvorenepole) {
-                        foreach (P1Policko P1ToPolicko in P1ToPolicko) {
-                            if (vytvorenepolicko.X == Xlodi && vytvorenepolicko.Y == Ylodi) {
-                                if (P1ToPolicko.p1state == State.Placed) {
+                    foreach (P1Policko vytvorenepolicko in vytvorenepole)
+                    {
+                        foreach (P1Policko P1ToPolicko in P1ToPolicko)
+                        {
+                            if (vytvorenepolicko.X == Xlodi && vytvorenepolicko.Y == Ylodi)
+                            {
+                                if (P1ToPolicko.p1state == State.Placed)
+                                {
                                     P1ToPolicko.p1state = State.Empty;
                                 }
                             }
@@ -623,25 +839,37 @@ namespace Ships {
                     }
                 }
             }
-            if (sellection == 2) {
-                if (Ylodi >= 1) {
+            if (sellection == 2)
+            {
+                if (Ylodi >= 1)
+                {
                     List<P1Policko> vytvorenepole = GenerateP1Plocha();
-                    foreach (P1Policko vytvorenepolicko in vytvorenepole) {
-                        foreach (P1Policko P1ToPolicko in P1ToPolicko) {
-                            if (vytvorenepolicko.X == Xlodi && vytvorenepolicko.Y == Ylodi) {
-                                if (P1ToPolicko.p1state == State.Placed) {
+                    foreach (P1Policko vytvorenepolicko in vytvorenepole)
+                    {
+                        foreach (P1Policko P1ToPolicko in P1ToPolicko)
+                        {
+                            if (vytvorenepolicko.X == Xlodi && vytvorenepolicko.Y == Ylodi)
+                            {
+                                if (P1ToPolicko.p1state == State.Placed)
+                                {
                                     P1ToPolicko.p1state = State.Empty;
                                 }
                             }
                         }
                     }
                     Ylodi = Ylodi - 1;
-                } else {
+                }
+                else
+                {
                     List<P1Policko> vytvorenepole = GenerateP1Plocha();
-                    foreach (P1Policko vytvorenepolicko in vytvorenepole) {
-                        foreach (P1Policko P1ToPolicko in P1ToPolicko) {
-                            if (vytvorenepolicko.X == Xlodi && vytvorenepolicko.Y == Ylodi) {
-                                if (P1ToPolicko.p1state == State.Placed) {
+                    foreach (P1Policko vytvorenepolicko in vytvorenepole)
+                    {
+                        foreach (P1Policko P1ToPolicko in P1ToPolicko)
+                        {
+                            if (vytvorenepolicko.X == Xlodi && vytvorenepolicko.Y == Ylodi)
+                            {
+                                if (P1ToPolicko.p1state == State.Placed)
+                                {
                                     P1ToPolicko.p1state = State.Empty;
                                 }
                             }
@@ -649,25 +877,37 @@ namespace Ships {
                     }
                 }
             }
-            if (sellection == 3) {
-                if (Ylodi <= 8) {
+            if (sellection == 3)
+            {
+                if (Ylodi <= 8)
+                {
                     List<P1Policko> vytvorenepole = GenerateP1Plocha();
-                    foreach (P1Policko vytvorenepolicko in vytvorenepole) {
-                        foreach (P1Policko P1ToPolicko in P1ToPolicko) {
-                            if (vytvorenepolicko.X == Xlodi && vytvorenepolicko.Y == Ylodi) {
-                                if (P1ToPolicko.p1state == State.Placed) {
+                    foreach (P1Policko vytvorenepolicko in vytvorenepole)
+                    {
+                        foreach (P1Policko P1ToPolicko in P1ToPolicko)
+                        {
+                            if (vytvorenepolicko.X == Xlodi && vytvorenepolicko.Y == Ylodi)
+                            {
+                                if (P1ToPolicko.p1state == State.Placed)
+                                {
                                     P1ToPolicko.p1state = State.Empty;
                                 }
                             }
                         }
                     }
                     Ylodi = Ylodi + 1;
-                } else {
+                }
+                else
+                {
                     List<P1Policko> vytvorenepole = GenerateP1Plocha();
-                    foreach (P1Policko vytvorenepolicko in vytvorenepole) {
-                        foreach (P1Policko P1ToPolicko in P1ToPolicko) {
-                            if (vytvorenepolicko.X == Xlodi && vytvorenepolicko.Y == Ylodi) {
-                                if (P1ToPolicko.p1state == State.Placed) {
+                    foreach (P1Policko vytvorenepolicko in vytvorenepole)
+                    {
+                        foreach (P1Policko P1ToPolicko in P1ToPolicko)
+                        {
+                            if (vytvorenepolicko.X == Xlodi && vytvorenepolicko.Y == Ylodi)
+                            {
+                                if (P1ToPolicko.p1state == State.Placed)
+                                {
                                     P1ToPolicko.p1state = State.Empty;
                                 }
                             }
@@ -675,25 +915,37 @@ namespace Ships {
                     }
                 }
             }
-            if (sellection == 4) {
-                if (Xlodi <= 8) {
+            if (sellection == 4)
+            {
+                if (Xlodi <= 8)
+                {
                     List<P1Policko> vytvorenepole = GenerateP1Plocha();
-                    foreach (P1Policko vytvorenepolicko in vytvorenepole) {
-                        foreach (P1Policko P1ToPolicko in P1ToPolicko) {
-                            if (vytvorenepolicko.X == Xlodi && vytvorenepolicko.Y == Ylodi) {
-                                if (P1ToPolicko.p1state == State.Placed) {
+                    foreach (P1Policko vytvorenepolicko in vytvorenepole)
+                    {
+                        foreach (P1Policko P1ToPolicko in P1ToPolicko)
+                        {
+                            if (vytvorenepolicko.X == Xlodi && vytvorenepolicko.Y == Ylodi)
+                            {
+                                if (P1ToPolicko.p1state == State.Placed)
+                                {
                                     P1ToPolicko.p1state = State.Empty;
                                 }
                             }
                         }
                     }
                     Xlodi = Xlodi + 1;
-                } else {
+                }
+                else
+                {
                     List<P1Policko> vytvorenepole = GenerateP1Plocha();
-                    foreach (P1Policko vytvorenepolicko in vytvorenepole) {
-                        foreach (P1Policko P1ToPolicko in P1ToPolicko) {
-                            if (vytvorenepolicko.X == Xlodi && vytvorenepolicko.Y == Ylodi) {
-                                if (P1ToPolicko.p1state == State.Placed) {
+                    foreach (P1Policko vytvorenepolicko in vytvorenepole)
+                    {
+                        foreach (P1Policko P1ToPolicko in P1ToPolicko)
+                        {
+                            if (vytvorenepolicko.X == Xlodi && vytvorenepolicko.Y == Ylodi)
+                            {
+                                if (P1ToPolicko.p1state == State.Placed)
+                                {
                                     P1ToPolicko.p1state = State.Empty;
                                 }
                             }
@@ -701,19 +953,25 @@ namespace Ships {
                     }
                 }
             }
-            if (sellection == 5) {
+            if (sellection == 5)
+            {
                 List<P1Policko> vytvorenepole = GenerateP1Plocha();
-                foreach (P1Policko vytvorenepolicko in vytvorenepole) {
-                    foreach (P1Policko P1ToPolicko in P1ToPolicko) {
-                        if (vytvorenepolicko.X == Xlodi && vytvorenepolicko.Y == Ylodi) {
-                            if (P1ToPolicko.p1state == State.Placed) {
+                foreach (P1Policko vytvorenepolicko in vytvorenepole)
+                {
+                    foreach (P1Policko P1ToPolicko in P1ToPolicko)
+                    {
+                        if (vytvorenepolicko.X == Xlodi && vytvorenepolicko.Y == Ylodi)
+                        {
+                            if (P1ToPolicko.p1state == State.Placed)
+                            {
                                 P1ToPolicko.p1state = State.Empty;
                             }
                         }
                     }
                 }
             }
-            if (sellection == 6) {
+            if (sellection == 6)
+            {
                 exit = true;
                 Console.Clear();
                 Console.WriteLine("Exiting game...");
@@ -724,23 +982,25 @@ namespace Ships {
                 Console.Write("╚██████╔╝██║  ██║██║ ╚═╝ ██║███████╗    ╚██████╔╝ ╚████╔╝ ███████╗██║  ██║ \n");
                 Console.Write(" ╚═════╝ ╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝     ╚═════╝   ╚═══╝  ╚══════╝╚═╝  ╚═╝ \n");
             }
-            if (sellection == 7) {
+            if (sellection == 7)
+            {
                 List<P1Policko> vytvorenepole = GenerateP1Plocha();
-                List<EnemyPolicko> vytvorenepolenew = GenerateEnemyPlocha();
-                    foreach (P1Policko vytvorenepolicko in vytvorenepole) {
+                foreach (P1Policko vytvorenepolicko in vytvorenepole) {
                     foreach (P1Policko P1ToPolicko in P1ToPolicko) {
-                        foreach (EnemyPolicko vytvorenepolickonew in vytvorenepolenew) {
                             foreach (EnemyPolicko EnemyShipToPolicko in EnemyShipToPolicko) {
                                 if (vytvorenepolicko.X == Xlodi && vytvorenepolicko.Y == Ylodi) {
-                                        if (vytvorenepolickonew.X == Xlodi && vytvorenepolickonew.Y == Ylodi) {
-                                            if (EnemyShipToPolicko.enemystate == State.Empty) {
-                                            P1ToPolicko.p1state = State.Missed;
-                                            }
-                                            if (EnemyShipToPolicko.enemystate == State.PlacedbyShip) {
+                                    if (EnemyShipToPolicko.Y == Xlodi && EnemyShipToPolicko.X == Ylodi) {
+                                        if (P1ToPolicko.p1state == State.Placed) {
+                                            if (EnemyShipToPolicko.enemystate == State.PlacedbyShip)  {
                                                 P1ToPolicko.p1state = State.Hit;
-                                            P1Kills = P1Kills + 1;
                                             }
                                         }
+                                    } else {
+                                    if (P1ToPolicko.p1state == State.Placed) {
+                                        if (EnemyShipToPolicko.enemystate != State.PlacedbyShip)  {
+                                            P1ToPolicko.p1state = State.Missed;
+                                        }
+                                    }
                                 }
                             }
                         }

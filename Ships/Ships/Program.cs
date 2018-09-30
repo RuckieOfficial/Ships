@@ -65,11 +65,11 @@ namespace Ships {
                             plocha.P2Pohyb();*/
                         }
                     } while (plocha.exit == false && plocha.P1Kills < 3375 && plocha.P2Kills < 3375);
-                    if (plocha.P1Kills == 15) {
+                    /*if (plocha.P1Kills == 15) {
                         Console.WriteLine("Player 1 Wins!!! \nCongratulations!");
                     } else {
                         Console.WriteLine("Player 1 Wins!!! \nCongratulations!");
-                    }
+                    }*/
                 }
             }
         }
