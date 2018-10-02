@@ -13,10 +13,31 @@ namespace Ships {
                 Console.Clear();
                 Console.WriteLine("Welcome to Ships!\nMove: Arrows, Place: Enter, Exit: Esc");
                 Console.WriteLine("Player1: ");
+
+                if (plocha.Typylodi == 1) {
+                    plocha.ShipToPolicka(plocha.Ylodi, plocha.Xlodi, State.Placed);
+                }
+                if (plocha.Typylodi == 2) {
+                    plocha.ShipToPolicka(plocha.Ylodi, plocha.Xlodi, State.Placed);
+                    plocha.ShipToPolicka(plocha.Ylodi, plocha.Xlodi + 1, State.Placed);
+                }
+                if (plocha.Typylodi == 3) { 
                 plocha.ShipToPolicka(plocha.Ylodi, plocha.Xlodi, State.Placed);
                 plocha.ShipToPolicka(plocha.Ylodi, plocha.Xlodi + 1, State.Placed);
                 plocha.ShipToPolicka(plocha.Ylodi, plocha.Xlodi + 2, State.Placed);
-                Plocha.ShowPlocha();
+                }
+
+                if (plocha.Typylodi == 4) {
+                    plocha.ShipToPolicka(plocha.Ylodi, plocha.Xlodi, State.Placed);
+                    plocha.ShipToPolicka(plocha.Ylodi, plocha.Xlodi + 2, State.Placed);
+                    plocha.ShipToPolicka(plocha.Ylodi + 1, plocha.Xlodi - 1, State.Placed);
+                    plocha.ShipToPolicka(plocha.Ylodi + 1, plocha.Xlodi, State.Placed);
+                    plocha.ShipToPolicka(plocha.Ylodi + 1, plocha.Xlodi + 1, State.Placed);
+                    plocha.ShipToPolicka(plocha.Ylodi + 1, plocha.Xlodi + 2, State.Placed);
+                    plocha.ShipToPolicka(plocha.Ylodi + 1, plocha.Xlodi + 3, State.Placed);
+                }
+
+                    Plocha.ShowPlocha();
                 Console.WriteLine("Player2: ");
                 Plocha.ShowEnemyPlocha();
                 plocha.Pohyb();
@@ -30,9 +51,30 @@ namespace Ships {
                     Console.Clear();
                     Console.WriteLine("Welcome to Ships!\nMove: Arrows, Place: Enter, Exit: Esc");
                     Console.WriteLine("Player2: ");
-                    plocha.EnemyShipToPolicka(plocha.Ylodi, plocha.Xlodi, State.Placed);
-                    plocha.EnemyShipToPolicka(plocha.Ylodi, plocha.Xlodi + 1, State.Placed);
-                    plocha.EnemyShipToPolicka(plocha.Ylodi, plocha.Xlodi + 2, State.Placed);
+
+                    if (plocha.Typylodi == 1) {
+                        plocha.EnemyShipToPolicka(plocha.Ylodi, plocha.Xlodi, State.Placed);
+                    }
+                    if (plocha.Typylodi == 2) {
+                        plocha.EnemyShipToPolicka(plocha.Ylodi, plocha.Xlodi, State.Placed);
+                        plocha.EnemyShipToPolicka(plocha.Ylodi, plocha.Xlodi + 1, State.Placed);
+                    }
+                    if (plocha.Typylodi == 3) {
+                        plocha.EnemyShipToPolicka(plocha.Ylodi, plocha.Xlodi, State.Placed);
+                        plocha.EnemyShipToPolicka(plocha.Ylodi, plocha.Xlodi + 1, State.Placed);
+                        plocha.EnemyShipToPolicka(plocha.Ylodi, plocha.Xlodi + 2, State.Placed);
+                    }
+
+                    if (plocha.Typylodi == 4) {
+                        plocha.EnemyShipToPolicka(plocha.Ylodi, plocha.Xlodi, State.Placed);
+                        plocha.EnemyShipToPolicka(plocha.Ylodi, plocha.Xlodi + 2, State.Placed);
+                        plocha.EnemyShipToPolicka(plocha.Ylodi + 1, plocha.Xlodi - 1, State.Placed);
+                        plocha.EnemyShipToPolicka(plocha.Ylodi + 1, plocha.Xlodi, State.Placed);
+                        plocha.EnemyShipToPolicka(plocha.Ylodi + 1, plocha.Xlodi + 1, State.Placed);
+                        plocha.EnemyShipToPolicka(plocha.Ylodi + 1, plocha.Xlodi + 2, State.Placed);
+                        plocha.EnemyShipToPolicka(plocha.Ylodi + 1, plocha.Xlodi + 3, State.Placed);
+                    }
+
                     Plocha.ShowEnemyPlocha();
                     Console.WriteLine();
                     Console.WriteLine("Player1: ");
@@ -68,7 +110,7 @@ namespace Ships {
                     /*if (plocha.P1Kills == 15) {
                         Console.WriteLine("Player 1 Wins!!! \nCongratulations!");
                     } else {
-                        Console.WriteLine("Player 1 Wins!!! \nCongratulations!");
+                        Console.WriteLine("Player 2 Wins!!! \nCongratulations!");
                     }*/
                 }
             }

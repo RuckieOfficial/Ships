@@ -22,6 +22,7 @@ namespace Ships
         public int P1Kills = 0;
         public int P2Kills = 0;
         public bool Win = false;
+        public int Typylodi = 1;
 
         public static List<Policko> GeneratePlocha()
         {
@@ -506,9 +507,12 @@ namespace Ships
                                 {
                                     ShipToPolicko.state = State.PlacedbyShip;
                                     ShipsPlaced++;
+                                        Random r = new Random();
+                                        Typylodi = r.Next(1, 5);
                                     if (ShipsPlaced == 15)
                                     {
                                         NextP = true;
+                                        Typylodi = 1;
                                     }
                                 }
                             }
@@ -752,6 +756,8 @@ namespace Ships
                                 {
                                     EnemyShipToPolicko.enemystate = State.PlacedbyShip;
                                     ShipsPlaced--;
+                                    Random r = new Random();
+                                    Typylodi = r.Next(1, 5);
                                     if (ShipsPlaced == 0)
                                     {
                                         NextP = false;
@@ -987,19 +993,18 @@ namespace Ships
                 List<P1Policko> vytvorenepole = GenerateP1Plocha();
                 foreach (P1Policko vytvorenepolicko in vytvorenepole) {
                     foreach (P1Policko P1ToPolicko in P1ToPolicko) {
-                            foreach (EnemyPolicko EnemyShipToPolicko in EnemyShipToPolicko) {
-                                if (vytvorenepolicko.X == Xlodi && vytvorenepolicko.Y == Ylodi) {
-                                    if (EnemyShipToPolicko.Y == Xlodi && EnemyShipToPolicko.X == Ylodi) {
-                                        if (P1ToPolicko.p1state == State.Placed) {
-                                            if (EnemyShipToPolicko.enemystate == State.PlacedbyShip)  {
-                                                P1ToPolicko.p1state = State.Hit;
-                                            }
-                                        }
-                                    } else {
+                        foreach (EnemyPolicko EnemyShipToPolicko in EnemyShipToPolicko) {
+                            if (vytvorenepolicko.X == Xlodi && vytvorenepolicko.Y == Ylodi) {
+                                if (EnemyShipToPolicko.Y == Xlodi && EnemyShipToPolicko.X == Ylodi) {
                                     if (P1ToPolicko.p1state == State.Placed) {
-                                        if (EnemyShipToPolicko.enemystate != State.PlacedbyShip)  {
-                                            P1ToPolicko.p1state = State.Missed;
+                                        if (EnemyShipToPolicko.enemystate == State.PlacedbyShip) {
+                                            P1ToPolicko.p1state = State.Hit;
                                         }
+                                    }
+                                }
+                                if (P1ToPolicko.p1state == State.Placed) {
+                                    if (EnemyShipToPolicko.enemystate != State.PlacedbyShip) {
+                                        P1ToPolicko.p1state = State.Missed;
                                     }
                                 }
                             }
